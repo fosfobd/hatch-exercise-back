@@ -1,0 +1,22 @@
+{
+  "name": "hatch-exercise-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Pablo Balderas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.16.3",
+    "knex": "^1.0.3",
+    "nodemon": "^1.17.5",
+    "pg": "^8.7.3"
+  }
+}
