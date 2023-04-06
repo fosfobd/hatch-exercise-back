@@ -2,10 +2,9 @@ module.exports = class Middlewares {
 
   static async log(req, res, next) {
 
-    const { method, hostname, originalUrl, origin } = req;
-    let logmsg = `\nreceived request: ${method} hostname: ${hostname} path: ${originalUrl} from origin: ${origin}`;
+    const { method, hostname, originalUrl } = req;
+    let logmsg = `\nreceived request: ${method} path: ${originalUrl} from hostname: ${hostname}`;
     console.log(logmsg);
-
     next();
 
   }
