@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  hatch-db:
+    restart: always
+    image: mysql:8.0.25
+    container_name: hatch-db
+    platform: linux/amd64
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: dont123456
+      MYSQL_DATABASE: hatchdb
+    volumes:
+      - ./out/mysql:/var/lib/mysql
+
+  db-load:
+    container_name: db-load
+    image: mysql:8.0.25
+    volumes:
+      - ./initdb.sql:/init.sql
+    command: /bin/bash -c "sleep 60 && echo loading sql db && mysql --host=hatch-db --user=root --password=dont123456 hatchdb < init.sql"
