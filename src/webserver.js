@@ -30,7 +30,7 @@ module.exports = class WebServer {
     // create, read, update, delete tasks
     app.post('/tasks', Tasks.create);
     app.get('/tasks', Tasks.read);
-    app.put('/tasks', Tasks.update);
+    app.patch('/tasks', Tasks.update);
     app.delete('/tasks', Tasks.delete);
 
     // start webserver
