@@ -9,6 +9,10 @@ module.exports = () => {
   if (!process.env.NODE_ENV) {
     throw 'NODE_ENV env var missing';
   }
+  if (!process.env.PORT) {
+    throw 'PORT env var missing';
+  }
+
   // db env vars
   if (!process.env.DB_HOST) {
     throw 'DB_HOST env var missing';
