@@ -92,7 +92,7 @@ module.exports = class Tasks {
       const { id, done } = req.body;
 
       // check if invalid req
-      if (!id || !done) {
+      if (!id || typeof done !== 'boolean') {
         console.log('Tasks.update - falsey values provided for task');
         return res.status(400).send('Bad request');
       }
