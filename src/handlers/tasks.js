@@ -49,12 +49,6 @@ module.exports = class Tasks {
   static async read(req, res, next) {
     try {
 
-      console.log(`Tasks.read - query string: ${JSON.stringify(req.query, null, 2)}`);
-
-      // TO-DO:
-      //      - prepare to read query string to be able to
-      //        filter by label later on (search feature)
-
       // parallel queries, sort of, node is single threaded, so this is the closest to parallel lol
       const rows = await Promise.all([false, true,].map(async (done) => {
         if (done) {
