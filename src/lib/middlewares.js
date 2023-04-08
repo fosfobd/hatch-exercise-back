@@ -11,8 +11,8 @@ module.exports = class Middlewares {
 
   static async cors(req, res, next) {
 
-    res.setHeader('Access-Control-Allow-Origin', 'localhost:3000');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS, HEAD, DELETE');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, PATCH, GET, OPTIONS, HEAD, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 

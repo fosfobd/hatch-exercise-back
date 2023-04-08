@@ -54,9 +54,20 @@ module.exports = class Tasks {
       // TO-DO:
       //      - prepare to read query string to be able to
       //        filter by label later on (search feature)
-      const rows = await DB.client.from('tasks').select();
 
-      const result = rows;
+      // parallel queries, sort of, node is single threaded, so this is the closest to parallel lol
+      const rows = await Promise.all([false, true,].map(async (done) => {
+        if (done) {
+          return await DB.client.from('tasks').select().where({done}).orderBy('label').limit(10);
+        } else {
+          return await DB.client.from('tasks').select().where({done}).orderBy('label');
+        }
+      }));
+
+      const result = {
+        todo: rows[0],
+        done: rows[1]
+      };
       return res.status(200).send(result);
 
     } catch (err) {
@@ -81,7 +92,7 @@ module.exports = class Tasks {
       const { id, done } = req.body;
 
       // check if invalid req
-      if (!id || !done) {
+      if (!id || typeof done !== 'boolean') {
         console.log('Tasks.update - falsey values provided for task');
         return res.status(400).send('Bad request');
       }
